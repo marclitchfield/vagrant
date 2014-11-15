@@ -15,6 +15,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.hostmanager.manage_host = true
   config.hostmanager.ignore_private_ip = false
   config.hostmanager.include_offline = true
+  config.vm.network "forwarded_port", guest: 9002, host: 9102
 
   config.vm.define "dev" do |node|
     node.vm.provision :shell, path: "dev/bootstrap.sh"

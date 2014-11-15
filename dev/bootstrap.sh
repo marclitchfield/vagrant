@@ -3,9 +3,13 @@
 apt-get install software-properties-common
 apt-add-repository ppa:ansible/ansible
 apt-get update
+apt-get -y upgrade
 
 # git
 apt-get install -y git
+
+# java
+apt-get install -y openjdk-7-jre-headless
 
 # docker
 apt-get install -y docker.io
