@@ -8,6 +8,11 @@ apt-get -y upgrade
 # git
 apt-get install -y git
 
+# ssh
+ssh-keygen -t rsa
+eval `ssh-agent -s`
+ssh-add
+
 # java
 apt-get install -y openjdk-7-jre-headless
 

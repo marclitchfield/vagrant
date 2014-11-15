@@ -1,8 +1,0 @@
----
-- hosts: prod-web
-  remote_user: marquis
-  tasks:
-  - name: stop standby container
-    docker: name=thedebate-web-standby state=absent
-  - name: run standby container with latest image
-    docker: image=marclitchfield/thedebate-web name=thedebate-web-standby port=9004 state=running
