@@ -38,7 +38,7 @@ ln -sf /usr/bin/nodejs /usr/local/bin/node
 apt-get install -y npm
 
 # setup code environment
-cd /home/vagrant/src
+cd /home/vagrant
 git clone https://github.com/marclitchfield/thedebate-web.git
 cd thedebate-web
 git checkout development

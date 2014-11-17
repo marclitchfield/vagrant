@@ -1,5 +1,5 @@
 # setup code
-cd /home/vagrant/src/thedebate-web
+cd /home/vagrant/thedebate-web
 npm install
 bower install
 mkdir node_modules/protractor/selenium
