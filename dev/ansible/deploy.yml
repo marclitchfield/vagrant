@@ -1,0 +1,60 @@
+#
+# Zero-downtime website deployment
+#
+---
+- hosts: prod-web
+  sudo: true
+  vars:
+      docker_image: marclitchfield/thedebate-web
+      primary_name: thedebate-web
+      standby_name: thedebate-web-standby
+      nginx_conf_dir: /etc/nginx/conf.d/locations/
+      nginx_config: thedebate-web.conf
+  tasks:
+  #
+  # ensure primary is running and taking traffic
+  #
+  - name: ensure primary is running
+    docker: image={{docker_image}} name={{primary_name}} ports=9002:9002 state=running
+
+  - name: configure nginx to direct traffic to primary
+    template: src=nginx/{{nginx_config}} dest={{nginx_conf_dir}}/{{nginx_config}}
+    with_items:
+        - { port: 9002 }
+
+  - name: reload nginx
+    command: nginx -s reload
+
+  #
+  # deploy to standby
+  #
+  - name: stop standby container
+    docker: privileged=true image={{docker_image}} name={{standby_name}} state=absent
+
+  - name: run standby container with latest image
+    docker: image={{docker_image}} name={{standby_name}} ports=9004:9002 state=running
+
+  - name: configure nginx to direct traffic to standby
+    template: src=nginx/{{nginx_config}} dest={{nginx_conf_dir}}/{{nginx_config}}
+    with_items:
+        - { port: 9004 }
+
+  - name: reload nginx
+    command: nginx -s reload
+
+  #
+  # deploy to primary
+  #
+  - name: stop primary container
+    docker: image={{docker_image}} name={{primary_name}} state=absent
+
+  - name: run primary container with latest image
+    docker: image={{docker_image}} name={{primary_name}} ports=9002:9002 state=running
+
+  - name: configure nginx to direct traffic to primary
+    template: src=nginx/{{nginx_config}} dest={{nginx_conf_dir}}/{{nginx_config}}
+    with_items:
+        - { port: 9002 }
+
+  - name: reload nginx
+    command: nginx -s reload
