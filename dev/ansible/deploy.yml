@@ -26,6 +26,12 @@
     command: nginx -s reload
 
   #
+  # pull image
+  #
+  - name: pull latest docker image
+    command: docker pull {{docker_image}}
+
+  #
   # deploy to standby
   #
   - name: stop standby container
