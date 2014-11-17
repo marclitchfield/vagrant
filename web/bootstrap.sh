@@ -9,3 +9,4 @@ sed -i '$acomplete -F _docker docker' /etc/bash_completion.d/docker.io
 docker pull ubuntu
 
 apt-get install -y nginx
+

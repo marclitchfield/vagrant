@@ -49,3 +49,4 @@ npm run setup
 
 # invoke user script as vagrant user
 su vagrant -l -c '/vagrant/dev/user.sh'
+

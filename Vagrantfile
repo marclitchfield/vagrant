@@ -29,3 +29,4 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     node.vm.hostname = "vagrant-web-box"
   end
 end
+

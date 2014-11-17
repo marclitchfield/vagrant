@@ -10,3 +10,4 @@
     docker: image=marclitchfield/thedebate-web name=thedebate-web state=absent
   - name: run primary container with latest image
     docker: image=marclitchfield/thedebate-web name=thedebate-web ports=9002 state=running
+
