@@ -25,6 +25,11 @@ docker pull ubuntu
 # ansible
 apt-get install -y ansible 
 
+# ansible+docker
+apt-get install -y python-pip
+pip install docker-py
+
+
 # node
 apt-get install -y nodejs
 ln -sf /usr/bin/nodejs /usr/local/bin/node
