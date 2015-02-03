@@ -5,6 +5,9 @@ apt-add-repository ppa:ansible/ansible
 apt-get update
 apt-get -y upgrade
 
+# zsh 
+apt-get install -y zsh
+
 # git
 apt-get install -y git
 
@@ -36,16 +39,6 @@ ln -sf /usr/bin/nodejs /usr/local/bin/node
 
 # npm
 apt-get install -y npm
-
-# setup code environment
-cd /home/vagrant
-git clone https://github.com/marclitchfield/thedebate-web.git
-cd thedebate-web
-git checkout development
-chown -R vagrant:vagrant .
-
-# install program-specific dependencies
-npm run setup
 
 # invoke user script as vagrant user
 su vagrant -l -c '/vagrant/dev/user.sh'

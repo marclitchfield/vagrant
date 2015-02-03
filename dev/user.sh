@@ -3,9 +3,9 @@ ssh-keygen
 eval `ssh-agent -s`
 ssh-add
 
-# setup code
-cd /home/vagrant/thedebate-web
-npm install
-bower install
-mkdir node_modules/protractor/selenium
-webdriver-manager update --out_dir=node_modules/protractor/selenium
+# set zsh as default shell
+chsh -s /bin/zsh 
+
+# enable npm install -g without sudo
+npm config set prefix ~/npm
+

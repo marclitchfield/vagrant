@@ -18,6 +18,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 9002, host: 9102
 
   config.vm.define "dev" do |node|
+    node.vm.synced_folder "./dev/src", "/home/src"
     node.vm.provision :shell, path: "dev/bootstrap.sh"
     node.vm.network "private_network", ip: "192.168.50.10" 
     node.vm.hostname = "vagrant-dev-box"
