@@ -32,13 +32,15 @@ apt-get install -y ansible
 apt-get install -y python-pip
 pip install docker-py
 
-
 # node
 apt-get install -y nodejs
 ln -sf /usr/bin/nodejs /usr/local/bin/node
 
 # npm
 apt-get install -y npm
+
+# rabbitmq
+apt-get install -y rabbitmq-server
 
 # invoke user script as vagrant user
 su vagrant -l -c '/vagrant/dev/user.sh'
